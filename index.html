@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System - GraphQL</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Management System</h1>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <h2>Search</h2>
+
+            <div class="search-container">
+                <!-- Search Student by ID -->
+                <div class="search-box">
+                    <h3>Search Student by ID</h3>
+                    <input type="number" id="searchStudentId" placeholder="Enter Student ID">
+                    <button onclick="searchStudentById()">Search</button>
+                </div>
+
+                <!-- Search Student by Name -->
+                <div class="search-box">
+                    <h3>Search Student by Name</h3>
+                    <input type="text" id="searchStudentName" placeholder="Enter Student Name">
+                    <button onclick="searchStudentByName()">Search</button>
+                </div>
+
+                <!-- Search Course by Name -->
+                <div class="search-box">
+                    <h3>Search Course by Name</h3>
+                    <input type="text" id="searchCourseName" placeholder="Enter Course Name">
+                    <button onclick="searchCourseByName()">Search</button>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div id="searchResults" class="search-results"></div>
+        </section>
+
+        <!-- Student Management Section -->
+        <section class="management-section">
+            <h2>Student Management</h2>
+
+            <!-- Add Student Form -->
+            <div class="form-container">
+                <h3>Add New Student</h3>
+                <form id="addStudentForm" onsubmit="addStudent(event)">
+                    <input type="text" id="studentName" placeholder="Student Name" required>
+                    <input type="email" id="studentEmail" placeholder="Student Email" required>
+                    <button type="submit">Add Student</button>
+                </form>
+            </div>
+
+            <!-- Edit Student Form (Hidden by default) -->
+            <div id="editStudentContainer" class="form-container" style="display: none;">
+                <h3>Edit Student</h3>
+                <form id="editStudentForm" onsubmit="updateStudent(event)">
+                    <input type="hidden" id="editStudentId">
+                    <input type="text" id="editStudentName" placeholder="Student Name" required>
+                    <input type="email" id="editStudentEmail" placeholder="Student Email" required>
+                    <button type="submit">Update Student</button>
+                    <button type="button" onclick="cancelEdit('student')">Cancel</button>
+                </form>
+            </div>
+
+            <!-- Students List -->
+            <div class="list-container">
+                <h3>Students List</h3>
+                <div id="studentsList"></div>
+            </div>
+        </section>
+
+        <!-- Course Management Section -->
+        <section class="management-section">
+            <h2>Course Management</h2>
+
+            <!-- Add Course Form -->
+            <div class="form-container">
+                <h3>Add New Course</h3>
+                <form id="addCourseForm" onsubmit="addCourse(event)">
+                    <input type="text" id="courseName" placeholder="Course Name" required>
+                    <button type="submit">Add Course</button>
+                </form>
+            </div>
+
+            <!-- Edit Course Form (Hidden by default) -->
+            <div id="editCourseContainer" class="form-container" style="display: none;">
+                <h3>Edit Course</h3>
+                <form id="editCourseForm" onsubmit="updateCourse(event)">
+                    <input type="hidden" id="editCourseId">
+                    <input type="text" id="editCourseName" placeholder="Course Name" required>
+                    <button type="submit">Update Course</button>
+                    <button type="button" onclick="cancelEdit('course')">Cancel</button>
+                </form>
+            </div>
+
+            <!-- Courses List -->
+            <div class="list-container">
+                <h3>Courses List</h3>
+                <div id="coursesList"></div>
+            </div>
+        </section>
+
+        <!-- Enrollment Management Section -->
+        <section class="management-section">
+            <h2>Enrollment Management</h2>
+
+            <div class="enrollment-container">
+                <!-- Enroll Student -->
+                <div class="form-container">
+                    <h3>Enroll Student in Course</h3>
+                    <form id="enrollForm" onsubmit="enrollStudent(event)">
+                        <select id="enrollStudentId" required>
+                            <option value="">Select Student</option>
+                        </select>
+                        <select id="enrollCourseId" required>
+                            <option value="">Select Course</option>
+                        </select>
+                        <button type="submit">Enroll</button>
+                    </form>
+                </div>
+
+                <!-- Unenroll Student -->
+                <div class="form-container">
+                    <h3>Unenroll Student from Course</h3>
+                    <form id="unenrollForm" onsubmit="unenrollStudent(event)">
+                        <select id="unenrollStudentId" required>
+                            <option value="">Select Student</option>
+                        </select>
+                        <select id="unenrollCourseId" required>
+                            <option value="">Select Course</option>
+                        </select>
+                        <button type="submit">Unenroll</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Message Display -->
+    <div id="message" class="message"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
